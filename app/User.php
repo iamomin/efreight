@@ -6,13 +6,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $table = 'user';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname','lastname', 'username', 'email', 'password', 'contact', 'type'
     ];
 
     /**
@@ -21,6 +22,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remembertoken',
     ];
+
+    public function getCreatedAtColumn() {
+        return null;
+    }
+
+    public function getUpdatedAtColumn() {
+        return 'lastmodified';
+    }
 }
